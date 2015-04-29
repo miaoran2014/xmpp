@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "XMPPFramework.h"
 #import "MRLoginTool.h"
+#import "MRCommon.h"
 
 @interface AppDelegate ()<XMPPStreamDelegate>{
     XMPPStream *_xmppStream;
@@ -20,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    [self setupXmmpStream];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor blueColor] backgroundColor:nil forFlag:LOG_FLAG_INFO];
     //用户成功登录后，如果是重新启动程序，直接跳到主界面，否则跳到登录页面
     if([MRLoginTool loginStatu]){
         UIStoryboard *storybard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -58,8 +62,10 @@
     NSError *error = nil;
     BOOL success = [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
     if (success == NO) {
-        NSLog(@"%@",error);
+        HMLogInfo(@"%@",error);
     }
+    //发送通知到控制器(HMHistoryViewController)
+    [self postNotification:XMPPResultTypeLogining];
 }
 
 #pragma mark 断开连接
@@ -74,7 +80,7 @@
 
 #pragma mark -通知用户上线
 -(void)goOnline{
-    NSLog(@"通知用户上线");
+     HMLogInfo(@"通知用户上线");
     //创建在线对象
     XMPPPresence *presence = [XMPPPresence presence];
     //发送在线消息到服务
@@ -84,19 +90,19 @@
 #pragma mark -xmpstream的代理
 #pragma mark 连接成功
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
-    NSLog(@"连接成功");
+     HMLogInfo(@"连接成功");
     //连接成功之后，发送密码
     NSString *pwd = [MRLoginTool pwd];
     NSError *error = nil;
     [_xmppStream authenticateWithPassword:pwd error:&error];
     if (error) {
-        NSLog(@"%@",error);
+          HMLogInfo(@"%@",error);
     }
 }
 
 #pragma mark 连接失败
 -(void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    NSLog(@"连接失败 %@",error);
+   HMLogInfo(@"%@",error);
     if (error) {
         //知识补充，在实际开发中为用户体验，不应该把下面信息提示给用户
         if (error.code == 8) {//域名不正确，不知道主机
@@ -115,12 +121,14 @@
 
 #pragma mark 授权成功
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
-    NSLog(@"授权成功");
+     HMLogInfo(@"授权成功");
     //授权成功之后，要通知用户上线
     [self goOnline];
 //    if (_resultBlock) {
 //        _resultBlock(XMPPResultTypeLoginSuccuess);
 //    }
+    //发送通知到控制器(HMHistoryViewController)
+    [self postNotification:XMPPResultTypeLoginSuccuess];
     //切换storybard应该在主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         //授权成功之后应该跳到主界面
@@ -139,11 +147,11 @@
 
 #pragma mark 授权失败
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error{
-    NSLog(@"授权失败 %@",error);
-    
+      HMLogInfo(@"授权失败 %@",error);
     //授权失败，把登录信息从沙盒里面移除
     [self removeLoginInfo];
-    
+    //发送通知到控制器(HMHistoryViewController)
+    [self postNotification:XMPPResultTypeLoginFailure];
     //登录失败通过block通过登录控制器
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginFailure);
@@ -175,7 +183,7 @@
 
 #pragma mark 连接到服务器
 -(void)xmppLogin:(XMPPResultBlock)resultBlock{
-    NSLog(@"连接到服务器");
+    HMLogInfo(@"连接到服务器");
     _resultBlock = resultBlock;
     //连接到服务器的时候，如果之前有存在连接，应该断
         if (_xmppStream.isConnected) {
@@ -199,4 +207,18 @@
     self.window.rootViewController = storyboard.instantiateInitialViewController;
 }
 
+/**
+ *  发送登录状态给HMHistoryViewControler
+ *
+ *  @param resultType 登录状态
+ */
+-(void)postNotification:(XMPPResultType)resultType{
+    
+    //要在主线程发送这个通知，控制器（HMHistoryViewControler）里的UI更新才没有问题
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary *userInfo = @{@"LoginStatu": @(resultType)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatuNotification" object:nil userInfo:userInfo];
+    });
+    
+}
 @end

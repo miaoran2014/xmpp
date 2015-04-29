@@ -11,6 +11,7 @@
 
 //定义登录结果的枚举
 typedef enum {
+    XMPPResultTypeLogining,//登录中
     XMPPResultTypeLoginSuccuess,//登录成功
     XMPPResultTypeLoginFailure,//登录失败
     XMPPResultTypeNetError,//网络问题 (不给力)

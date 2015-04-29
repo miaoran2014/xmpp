@@ -7,10 +7,10 @@
 //
 
 #import "MRLoginView.h"
-
+#import "MRCommon.h"
 @implementation MRLoginView
 
 -(void)dealloc{
-    NSLog(@"%s",__func__);
+    //HMLogInfo(@"%s",__func__);
 }
 @end

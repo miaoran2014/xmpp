@@ -3,6 +3,7 @@
 #import "UIButton+CZ.h"
 #import "MBProgressHUD+HM.h"
 #import "MRLoginTool.h"
+#import "MRCommon.h"
 
 @interface MRLoginController ()
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
@@ -55,15 +56,15 @@
             [MBProgressHUD hideHUDForView:hudView];
             switch (resultType) {
                 case XMPPResultTypeLoginFailure:
-                    NSLog(@"LoginVC 登录失败");
+                    HMLogInfo(@"LoginVC 登录失败");
                     [MBProgressHUD showError:@"用户名或者密码错误"];
                     break;
                 case XMPPResultTypeNetError:
-                    NSLog(@"LoginVC 网络问题");
+                    HMLogInfo(@"LoginVC 网络问题");
                     [MBProgressHUD showError:@"网络不给力"];
                     break;
                 case XMPPResultTypeLoginSuccuess:
-                    NSLog(@"LoginVC 登录成功");
+                    HMLogInfo(@"LoginVC 登录成功");
                     break;
                 case XMPPResultTypeUnknowDomain:
                    [MBProgressHUD showError:@"主机不存在"];
@@ -78,6 +79,6 @@
     }];
 }
 -(void)dealloc{
-        NSLog(@"%s",__func__);
+      //  HMLogInfo(@"%s",__func__);
 }
 @end

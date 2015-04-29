@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840000341AF08C5600864B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840000331AF08C5600864B0A /* Main.storyboard */; };
+		840000371AF08D8600864B0A /* MRHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840000361AF08D8600864B0A /* MRHistoryController.m */; };
 		8469C5F81AF063410034A765 /* MRLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5F71AF063410034A765 /* MRLoginTool.m */; };
 		8469C5FB1AF074340034A765 /* MRLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5FA1AF074340034A765 /* MRLoginView.m */; };
+		8469C5FE1AF07EA30034A765 /* MRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5FD1AF07EA30034A765 /* MRCommon.m */; };
 		847C6F831AEF8211003E5D6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847C6F821AEF8211003E5D6D /* Images.xcassets */; };
 		847C6F861AEF8211003E5D6D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847C6F841AEF8211003E5D6D /* LaunchScreen.xib */; };
 		847C6F921AEF8211003E5D6D /* xmppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C6F911AEF8211003E5D6D /* xmppTests.m */; };
@@ -163,7 +166,6 @@
 		8498E9E21AEFE039002894CE /* MRLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9E01AEFE039002894CE /* MRLoginController.m */; };
 		8498E9E31AEFE039002894CE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8498E9E11AEFE039002894CE /* Login.storyboard */; };
 		8498E9E71AEFE048002894CE /* MRMyVCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9E61AEFE048002894CE /* MRMyVCardController.m */; };
-		8498E9E91AEFE0A2002894CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8498E9E81AEFE0A2002894CE /* Main.storyboard */; };
 		8498E9F81AEFE0FF002894CE /* NSArray+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9ED1AEFE0FF002894CE /* NSArray+CZ.m */; };
 		8498E9F91AEFE0FF002894CE /* NSDate+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9EF1AEFE0FF002894CE /* NSDate+CZ.m */; };
 		8498E9FA1AEFE0FF002894CE /* NSString+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9F11AEFE0FF002894CE /* NSString+CZ.m */; };
@@ -183,10 +185,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840000331AF08C5600864B0A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		840000351AF08D8600864B0A /* MRHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRHistoryController.h; sourceTree = "<group>"; };
+		840000361AF08D8600864B0A /* MRHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRHistoryController.m; sourceTree = "<group>"; };
 		8469C5F61AF063410034A765 /* MRLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRLoginTool.h; sourceTree = "<group>"; };
 		8469C5F71AF063410034A765 /* MRLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRLoginTool.m; sourceTree = "<group>"; };
 		8469C5F91AF074340034A765 /* MRLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRLoginView.h; sourceTree = "<group>"; };
 		8469C5FA1AF074340034A765 /* MRLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRLoginView.m; sourceTree = "<group>"; };
+		8469C5FC1AF07EA30034A765 /* MRCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCommon.h; sourceTree = "<group>"; };
+		8469C5FD1AF07EA30034A765 /* MRCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommon.m; sourceTree = "<group>"; };
 		847C6F721AEF8211003E5D6D /* xmpp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xmpp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847C6F761AEF8211003E5D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847C6F821AEF8211003E5D6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -502,7 +509,6 @@
 		8498E9E11AEFE039002894CE /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		8498E9E51AEFE048002894CE /* MRMyVCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMyVCardController.h; sourceTree = "<group>"; };
 		8498E9E61AEFE048002894CE /* MRMyVCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRMyVCardController.m; sourceTree = "<group>"; };
-		8498E9E81AEFE0A2002894CE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8498E9EB1AEFE0FF002894CE /* HMCategoryCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCategoryCommon.h; sourceTree = "<group>"; };
 		8498E9EC1AEFE0FF002894CE /* NSArray+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CZ.h"; sourceTree = "<group>"; };
 		8498E9ED1AEFE0FF002894CE /* NSArray+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CZ.m"; sourceTree = "<group>"; };
@@ -542,6 +548,8 @@
 		8469C5F51AF0631E0034A765 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				8469C5FC1AF07EA30034A765 /* MRCommon.h */,
+				8469C5FD1AF07EA30034A765 /* MRCommon.m */,
 				8469C5F61AF063410034A765 /* MRLoginTool.h */,
 				8469C5F71AF063410034A765 /* MRLoginTool.m */,
 			);
@@ -1531,7 +1539,9 @@
 		8498E9E41AEFE048002894CE /* IM */ = {
 			isa = PBXGroup;
 			children = (
-				8498E9E81AEFE0A2002894CE /* Main.storyboard */,
+				840000351AF08D8600864B0A /* MRHistoryController.h */,
+				840000361AF08D8600864B0A /* MRHistoryController.m */,
+				840000331AF08C5600864B0A /* Main.storyboard */,
 				8498E9E51AEFE048002894CE /* MRMyVCardController.h */,
 				8498E9E61AEFE048002894CE /* MRMyVCardController.m */,
 			);
@@ -1638,7 +1648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8498E9E91AEFE0A2002894CE /* Main.storyboard in Resources */,
+				840000341AF08C5600864B0A /* Main.storyboard in Resources */,
 				847C73D21AEF8759003E5D6D /* build-libidn.sh in Resources */,
 				8498E9E31AEFE039002894CE /* Login.storyboard in Resources */,
 				847C6F861AEF8211003E5D6D /* LaunchScreen.xib in Resources */,
@@ -1698,6 +1708,7 @@
 				847C73CA1AEF8759003E5D6D /* DDContextFilterLogFormatter.m in Sources */,
 				847C73B01AEF8759003E5D6D /* XMPPPing.m in Sources */,
 				847C73701AEF8759003E5D6D /* XMPPIQ+LastActivity.m in Sources */,
+				8469C5FE1AF07EA30034A765 /* MRCommon.m in Sources */,
 				847C73951AEF8759003E5D6D /* XMPPRegistration.m in Sources */,
 				847C738F1AEF8759003E5D6D /* XMPPResultSet.m in Sources */,
 				847C73681AEF8759003E5D6D /* XMPPResourceMemoryStorageObject.m in Sources */,
@@ -1707,6 +1718,7 @@
 				847C73AF1AEF8759003E5D6D /* XMPPAutoPing.m in Sources */,
 				847C735D1AEF8759003E5D6D /* XMPPFileTransfer.m in Sources */,
 				847C73BF1AEF8759003E5D6D /* RFImageToDataTransformer.m in Sources */,
+				840000371AF08D8600864B0A /* MRHistoryController.m in Sources */,
 				847C73521AEF8759003E5D6D /* XMPPConstants.m in Sources */,
 				847C73731AEF8759003E5D6D /* XMPPRoom.xcdatamodeld in Sources */,
 				847C737F1AEF8759003E5D6D /* XMPPMUC.m in Sources */,

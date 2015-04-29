@@ -27,7 +27,7 @@
         <!--Root View Controller-->
         <scene sceneID="248-20-tMy">
             <objects>
-                <tableViewController id="bMX-lm-0j6" sceneMemberID="viewController">
+                <tableViewController id="bMX-lm-0j6" customClass="MRHistoryController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EZg-V7-8iq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,24 @@
                             <outlet property="delegate" destination="bMX-lm-0j6" id="GiB-Y6-EAJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bJ7-c1-y53"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="bJ7-c1-y53">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="YR6-1f-xxy">
+                            <view key="customView" contentMode="scaleToFill" id="1kp-eD-Z2H">
+                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="h9f-aS-bTd">
+                                        <rect key="frame" x="15" y="7" width="20" height="20"/>
+                                        <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="indicatorView" destination="h9f-aS-bTd" id="Lie-TT-GWB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WjT-nG-dP1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,11 +134,11 @@
             </objects>
             <point key="canvasLocation" x="794" y="1456"/>
         </scene>
-        <!--Item-->
+        <!--个人信息-->
         <scene sceneID="vuY-sM-7Jm">
             <objects>
                 <navigationController definesPresentationContext="YES" id="pTj-3R-BIw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2r1-WM-3At"/>
+                    <tabBarItem key="tabBarItem" title="个人信息" image="tabbar_me" id="2r1-WM-3At"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LTY-Hd-6Ck">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -133,11 +150,11 @@
             </objects>
             <point key="canvasLocation" x="262" y="1456"/>
         </scene>
-        <!--Item-->
+        <!--联系人-->
         <scene sceneID="MWD-eh-1UN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="QGz-0V-8a7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="iST-ON-ePg"/>
+                    <tabBarItem key="tabBarItem" title="联系人" image="tabbar_contacts" id="iST-ON-ePg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8cB-5G-SZ2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -149,11 +166,11 @@
             </objects>
             <point key="canvasLocation" x="246" y="716"/>
         </scene>
-        <!--Item-->
+        <!--历史-->
         <scene sceneID="u7Q-8l-GvB">
             <objects>
                 <navigationController definesPresentationContext="YES" id="6Og-iC-DkN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="GrZ-JA-bz9"/>
+                    <tabBarItem key="tabBarItem" title="历史" image="tabbar_mainframe" id="GrZ-JA-bz9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gjy-jQ-wCH">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -166,6 +183,11 @@
             <point key="canvasLocation" x="232" y="17"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_contacts" width="80" height="49"/>
+        <image name="tabbar_mainframe" width="80" height="49"/>
+        <image name="tabbar_me" width="80" height="49"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

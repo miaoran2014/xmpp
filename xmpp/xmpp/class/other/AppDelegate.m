@@ -37,6 +37,7 @@
 
 #pragma mark 初始化xmppStream
 -(void)setupXmmpStream{
+    NSAssert(_xmppStream==nil, @"_xmppStream被重复创建");
     //1.创建对象
     _xmppStream = [[XMPPStream alloc] init];
     //添加自动连接模块

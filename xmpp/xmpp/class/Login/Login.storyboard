@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="no1-uq-vJ5"/>
                         <viewControllerLayoutGuide type="bottom" id="WEL-Uk-zH0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="27J-9B-LmT">
+                    <view key="view" contentMode="scaleToFill" id="27J-9B-LmT" customClass="MRLoginView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>

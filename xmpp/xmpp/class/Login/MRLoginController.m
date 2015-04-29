@@ -10,7 +10,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userField;//用户
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;//密码
 @property (weak, nonatomic) IBOutlet UITextField *domainField;//域名
-
 @end
 
 @implementation MRLoginController
@@ -47,7 +46,7 @@
     AppDelegate *appDelegate = obj;
     [self.view endEditing:YES];
     
-    UIView *hudView = self.view;
+    __weak UIView *hudView = self.view;
     [MBProgressHUD showMessage:@"正在登录...." toView:hudView];
     
     //调用xmppLogin方法
@@ -78,5 +77,7 @@
         });
     }];
 }
-
+-(void)dealloc{
+        NSLog(@"%s",__func__);
+}
 @end

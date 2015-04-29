@@ -5,7 +5,6 @@
 //  Created by admin on 15/4/28.
 //  Copyright (c) 2015年 admin. All rights reserved.
 //
-
 #import "AppDelegate.h"
 #import "XMPPFramework.h"
 #import "MRLoginTool.h"
@@ -18,8 +17,6 @@
 @end
 
 @implementation AppDelegate
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    [self setupXmmpStream];
@@ -37,7 +34,6 @@
 -(void)setupXmmpStream{
     //1.创建对象
     _xmppStream = [[XMPPStream alloc] init];
-    
     //2.设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
@@ -45,7 +41,6 @@
 #pragma mark 连接到主机
 -(void)connectToHost{
     NSLog(@"开始连接到主机");
-    
     //设置用户jid
     //名字 + 域名
     //从沙盒获取登录信息
@@ -53,16 +48,12 @@
     NSString *domain =[MRLoginTool domain];
     //1.创建用户的jid
     XMPPJID *myJid = [XMPPJID jidWithUser:user domain:domain resource:nil];
-    
     //2.设置xmppStream的登录用户jid
     _xmppStream.myJID = myJid;
-    
     //3.设置服务器的端口
     _xmppStream.hostPort = 5222;
-    
     //4.设置服务器地址
     _xmppStream.hostName = domain;
-    
     //5.连接
     NSError *error = nil;
     BOOL success = [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
@@ -74,11 +65,9 @@
 #pragma mark 断开连接
 -(void)disconnectFromHost{
     //1.通知用户下线
-    
     //创建离线对象
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [_xmppStream sendElement:presence];
-    
     //2.断开连接
     [_xmppStream disconnect];
 }
@@ -96,7 +85,6 @@
 #pragma mark 连接成功
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
     NSLog(@"连接成功");
-    
     //连接成功之后，发送密码
     NSString *pwd = [MRLoginTool pwd];
     NSError *error = nil;
@@ -120,20 +108,19 @@
                 _resultBlock(XMPPResultTypeConnectionRefused);
             }
         }
-        
         //连接失败 清除登录数据
         [self removeLoginInfo];
-        
     }
 }
 
 #pragma mark 授权成功
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     NSLog(@"授权成功");
-    
     //授权成功之后，要通知用户上线
     [self goOnline];
-    
+//    if (_resultBlock) {
+//        _resultBlock(XMPPResultTypeLoginSuccuess);
+//    }
     //切换storybard应该在主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         //授权成功之后应该跳到主界面
@@ -141,11 +128,11 @@
         
         //获取剪头所指的控制器
         UITabBarController *tabVc = [storybard  instantiateInitialViewController];
-        
-        self.window.rootViewController = tabVc;
-        
+        UIViewController* old=self.window.rootViewController;
+        if(![old isKindOfClass:[tabVc class]]){
+           self.window.rootViewController = tabVc;
+        }
     });
-    
     //添加登录成功标识到沙盒
    [MRLoginTool setLoginStatu:YES];
 }
@@ -170,7 +157,6 @@
     if([MRLoginTool loginStatu]){
         [self disconnectFromHost];
     }
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -180,9 +166,7 @@
         //直接跳到主界面
         [self connectToHost];
     }
-    
 }
-
 
 #pragma mark 消除沙盒用户登录数据
 -(void)removeLoginInfo{

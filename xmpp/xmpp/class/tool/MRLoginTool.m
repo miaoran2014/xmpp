@@ -32,7 +32,6 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:kUserKey];
 }
 
-
 /**
  *  从偏好设置返回密码
  */
@@ -40,14 +39,12 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:kPwdKey];
 }
 
-
 /**
  *  从偏好设置返回域名
  */
 +(NSString *)domain{
     return [[NSUserDefaults standardUserDefaults] objectForKey:kDomainKey];
 }
-
 
 #pragma mark 消除沙盒用户登录数据
 +(void)removeLoginInfo{

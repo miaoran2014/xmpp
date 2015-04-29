@@ -94,7 +94,13 @@
     //连接成功之后，发送密码
     NSString *pwd = [MRLoginTool pwd];
     NSError *error = nil;
-    [_xmppStream authenticateWithPassword:pwd error:&error];
+    
+    if(self.isUserRegister){
+        [_xmppStream registerWithPassword:pwd error:&error];
+    }else{
+       [_xmppStream authenticateWithPassword:pwd error:&error];
+    }
+    
     if (error) {
           HMLogInfo(@"%@",error);
     }
@@ -156,9 +162,24 @@
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginFailure);
     }
-    
-    
 }
+
+#pragma mark 注册成功
+-(void)xmppStreamDidRegister:(XMPPStream *)sender{
+    HMLogInfo(@"注册成功");
+    if (_resultBlock) {
+        _resultBlock(XMPPResultTypeRegisterSuccess);
+    }
+}
+
+#pragma mark 注册失败
+-(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
+    HMLogInfo(@"注册失败");
+    if (_resultBlock) {
+        _resultBlock(XMPPResultTypeRegisterFailure);
+    }
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     //如果用户登录过,应用程序退出到后台的时候，断开连接
@@ -207,6 +228,16 @@
     self.window.rootViewController = storyboard.instantiateInitialViewController;
 }
 
+#pragma mark 用户注册
+-(void)xmppRegister:(XMPPResultBlock)resultBlock{
+    //把传进来的block赋值给_resultBlock
+    _resultBlock = resultBlock;
+    
+    //连接到服务器的时候，如果之前有存在连接，应该断开
+    [_xmppStream disconnect];
+    
+    [self connectToHost];
+}
 /**
  *  发送登录状态给HMHistoryViewControler
  *

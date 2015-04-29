@@ -58,6 +58,9 @@
                                         <state key="normal" title="注册" backgroundImage="LoginGreenBigBtn">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="regist:" destination="nut-CB-keY" eventType="touchUpInside" id="d8O-nB-ifK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcD-6v-rpp">
                                         <rect key="frame" x="157" y="138" width="109" height="30"/>

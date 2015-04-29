@@ -13,6 +13,7 @@
 @interface AppDelegate ()<XMPPStreamDelegate>{
     XMPPStream *_xmppStream;
     XMPPResultBlock _resultBlock;//登录和注册结果block
+    XMPPReconnect *_reconnect;//自动连接模块
 }
 
 @end
@@ -38,6 +39,11 @@
 -(void)setupXmmpStream{
     //1.创建对象
     _xmppStream = [[XMPPStream alloc] init];
+    //添加自动连接模块
+    //创建自动连接模块对象
+    _reconnect = [[XMPPReconnect alloc] init];
+    //激活
+    [_reconnect activate:_xmppStream];
     //2.设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
@@ -251,5 +257,22 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginStatuNotification" object:nil userInfo:userInfo];
     });
     
+}
+-(void)dealloc{
+    [self teardownStream];
+}
+-(void)teardownStream{
+    //移除代理
+    [_xmppStream removeDelegate:self];
+    
+    //停止自动连接模块
+    [_reconnect deactivate];
+    
+    //断开连接
+    [_xmppStream disconnect];
+    
+    //清空资源
+    _xmppStream = nil;
+    _reconnect = nil;
 }
 @end

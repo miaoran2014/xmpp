@@ -172,6 +172,7 @@
 		8498E9FB1AEFE0FF002894CE /* UIButton+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9F31AEFE0FF002894CE /* UIButton+CZ.m */; };
 		8498E9FC1AEFE0FF002894CE /* UIImage+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9F51AEFE0FF002894CE /* UIImage+CZ.m */; };
 		8498E9FD1AEFE0FF002894CE /* UIView+CZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498E9F71AEFE0FF002894CE /* UIView+CZ.m */; };
+		849A6A441AF1E9A30012F7D8 /* MREditVCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849A6A431AF1E9A30012F7D8 /* MREditVCardController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -522,6 +523,8 @@
 		8498E9F51AEFE0FF002894CE /* UIImage+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CZ.m"; sourceTree = "<group>"; };
 		8498E9F61AEFE0FF002894CE /* UIView+CZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CZ.h"; sourceTree = "<group>"; };
 		8498E9F71AEFE0FF002894CE /* UIView+CZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CZ.m"; sourceTree = "<group>"; };
+		849A6A421AF1E9A30012F7D8 /* MREditVCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MREditVCardController.h; sourceTree = "<group>"; };
+		849A6A431AF1E9A30012F7D8 /* MREditVCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MREditVCardController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1539,6 +1542,8 @@
 		8498E9E41AEFE048002894CE /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				849A6A421AF1E9A30012F7D8 /* MREditVCardController.h */,
+				849A6A431AF1E9A30012F7D8 /* MREditVCardController.m */,
 				840000351AF08D8600864B0A /* MRHistoryController.h */,
 				840000361AF08D8600864B0A /* MRHistoryController.m */,
 				840000331AF08C5600864B0A /* Main.storyboard */,
@@ -1744,6 +1749,7 @@
 				8469C5FB1AF074340034A765 /* MRLoginView.m in Sources */,
 				847C73D11AEF8759003E5D6D /* DDXMLNode.m in Sources */,
 				847C739C1AEF8759003E5D6D /* XMPPCapabilities.xcdatamodel in Sources */,
+				849A6A441AF1E9A30012F7D8 /* MREditVCardController.m in Sources */,
 				847C73A61AEF8759003E5D6D /* XMPPvCardAvatarModule.m in Sources */,
 				847C739B1AEF8759003E5D6D /* NSString+XEP_0106.m in Sources */,
 				847C73CF1AEF8759003E5D6D /* DDXMLDocument.m in Sources */,

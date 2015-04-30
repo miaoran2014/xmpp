@@ -344,11 +344,55 @@
                         <outlet property="orgUnitsLabel" destination="luc-9M-E0J" id="lLN-gm-99s"/>
                         <outlet property="telLabel" destination="nBb-II-2Bb" id="ed9-16-Opu"/>
                         <outlet property="titleLabel" destination="nIs-Yq-PU9" id="JSE-Bm-dp4"/>
+                        <segue destination="YYO-F8-gdR" kind="push" identifier="editVCardSegue" id="AcE-53-gXL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hk3-D2-Rgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724" y="1456"/>
+            <point key="canvasLocation" x="607" y="1456"/>
+        </scene>
+        <!--EditV Card Controller-->
+        <scene sceneID="jvp-wL-gsA">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="YYO-F8-gdR" customClass="MREditVCardController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mQ0-XA-Ktj"/>
+                        <viewControllerLayoutGuide type="bottom" id="NFP-6K-iv3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v6G-1g-gcy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ci7-z3-wCx">
+                                <rect key="frame" x="36" y="85" width="258" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bhw-Cc-UQO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ci7-z3-wCx" firstAttribute="top" secondItem="mQ0-XA-Ktj" secondAttribute="bottom" constant="21" id="Hdk-2N-wqy"/>
+                            <constraint firstAttribute="trailing" secondItem="ci7-z3-wCx" secondAttribute="trailing" constant="26" id="NFL-TI-cGS"/>
+                            <constraint firstItem="ci7-z3-wCx" firstAttribute="leading" secondItem="v6G-1g-gcy" secondAttribute="leading" constant="36" id="tT3-yc-rqf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Cu7-Hm-sJm">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="yAc-Lo-fbX">
+                            <connections>
+                                <action selector="save:" destination="YYO-F8-gdR" id="aGy-LT-ExF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="ci7-z3-wCx" id="fw8-nL-e9m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JG2-gV-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1033" y="1456"/>
         </scene>
     </scenes>
     <resources>

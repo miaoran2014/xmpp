@@ -127,4 +127,13 @@
 -(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
      [self.tableView reloadData];
 }
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //获取好友
+        XMPPUserCoreDataStorageObject *friend = [_resultContr objectAtIndexPath:indexPath];
+        //删除好友
+        [Delegate.roster removeUser:friend.jid];
+    }
+}
 @end

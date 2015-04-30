@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		840000341AF08C5600864B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840000331AF08C5600864B0A /* Main.storyboard */; };
 		840000371AF08D8600864B0A /* MRHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840000361AF08D8600864B0A /* MRHistoryController.m */; };
+		843AABBF1AF2044C00772B2C /* MRRosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AABBE1AF2044C00772B2C /* MRRosterController.m */; };
 		8469C5F81AF063410034A765 /* MRLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5F71AF063410034A765 /* MRLoginTool.m */; };
 		8469C5FB1AF074340034A765 /* MRLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5FA1AF074340034A765 /* MRLoginView.m */; };
 		8469C5FE1AF07EA30034A765 /* MRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5FD1AF07EA30034A765 /* MRCommon.m */; };
@@ -189,6 +190,8 @@
 		840000331AF08C5600864B0A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		840000351AF08D8600864B0A /* MRHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRHistoryController.h; sourceTree = "<group>"; };
 		840000361AF08D8600864B0A /* MRHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRHistoryController.m; sourceTree = "<group>"; };
+		843AABBD1AF2044C00772B2C /* MRRosterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRRosterController.h; sourceTree = "<group>"; };
+		843AABBE1AF2044C00772B2C /* MRRosterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRRosterController.m; sourceTree = "<group>"; };
 		8469C5F61AF063410034A765 /* MRLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRLoginTool.h; sourceTree = "<group>"; };
 		8469C5F71AF063410034A765 /* MRLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRLoginTool.m; sourceTree = "<group>"; };
 		8469C5F91AF074340034A765 /* MRLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRLoginView.h; sourceTree = "<group>"; };
@@ -548,6 +551,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843AABBC1AF2042900772B2C /* friend */ = {
+			isa = PBXGroup;
+			children = (
+				843AABBD1AF2044C00772B2C /* MRRosterController.h */,
+				843AABBE1AF2044C00772B2C /* MRRosterController.m */,
+			);
+			path = friend;
+			sourceTree = "<group>";
+		};
 		8469C5F51AF0631E0034A765 /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,6 +1554,7 @@
 		8498E9E41AEFE048002894CE /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				843AABBC1AF2042900772B2C /* friend */,
 				849A6A421AF1E9A30012F7D8 /* MREditVCardController.h */,
 				849A6A431AF1E9A30012F7D8 /* MREditVCardController.m */,
 				840000351AF08D8600864B0A /* MRHistoryController.h */,
@@ -1775,6 +1788,7 @@
 				847C737D1AEF8759003E5D6D /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				8498E9F81AEFE0FF002894CE /* NSArray+CZ.m in Sources */,
 				847C73741AEF8759003E5D6D /* XMPPRoomCoreDataStorage.m in Sources */,
+				843AABBF1AF2044C00772B2C /* MRRosterController.m in Sources */,
 				847C73C21AEF8759003E5D6D /* XMPPStringPrep.m in Sources */,
 				847C73B61AEF8759003E5D6D /* XMPPMessage+XEP_0224.m in Sources */,
 				847C73961AEF8759003E5D6D /* NSDate+XMPPDateTimeProfiles.m in Sources */,

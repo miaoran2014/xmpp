@@ -61,13 +61,11 @@
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     int cellTag = (int)selectedCell.tag;
     if (cellTag == 2 ) return; //如果tag为2，不做任何事件 直接返回
-    
     if (cellTag == 0) {//图片选择
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照相" otherButtonTitles:@"相册", nil];
         [sheet showInView:self.view];
     }else{
         //跳转,,讲cell传递过去
-        
         [self performSegueWithIdentifier:@"editVCardSegue" sender:selectedCell];
     }
 }
@@ -81,7 +79,6 @@
     imageContr.allowsEditing = YES;
     //设置代理
     imageContr.delegate = self;
-    
     if (buttonIndex == 0) {//照相
         imageContr.sourceType = UIImagePickerControllerSourceTypeCamera;
     }else if (buttonIndex == 1){//相册
@@ -91,10 +88,8 @@
     [self presentViewController:imageContr animated:YES completion:nil];
 }
 
-
 #pragma mark 图片选择控制器的代理
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
     //获取编辑后的图片
     UIImage *image = info[UIImagePickerControllerEditedImage];
     //设置imageView
@@ -125,8 +120,8 @@
         }
     }
 }
+
 -(void)editVCardViewControllerDidFinishChange{
-    
     //更新服务器
     //1获取电子名片
     XMPPvCardTemp *myCard = Delegate.vCardModule.myvCardTemp;

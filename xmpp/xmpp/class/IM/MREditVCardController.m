@@ -1,4 +1,3 @@
-
 #import "MREditVCardController.h"
 
 @interface MREditVCardController ()
@@ -25,7 +24,6 @@
     //判断数据有没有修改,有修改才通知上一个控制器
     if (![self.rightLabel.text isEqualToString:self.textField.text]) {
         if ([self.delegate respondsToSelector:@selector(editVCardViewControllerDidFinishChange)]) {
-            
             //改变上一个控制器cell的右边的Label的数据
             //是同一个label
             self.rightLabel.text = self.textField.text;
@@ -33,7 +31,6 @@
             [self.delegate editVCardViewControllerDidFinishChange];
         }
     }
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  xmpp
-//
-//  Created by admin on 15/4/28.
-//  Copyright (c) 2015年 admin. All rights reserved.
-//
 #import "AppDelegate.h"
 #import "MRLoginTool.h"
 #import "MRCommon.h"
@@ -16,7 +9,6 @@
     XMPPvCardCoreDataStorage *_vCardStorage;//存储电子名片数据
     XMPPvCardAvatarModule *_avatarModule;//头像模块
 }
-
 @end
 
 @implementation AppDelegate
@@ -30,7 +22,6 @@
     if([MRLoginTool loginStatu]){
         UIStoryboard *storybard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController *tabVc = [storybard  instantiateInitialViewController];
-        
         self.window.rootViewController = tabVc;
     }
     return YES;
@@ -57,6 +48,11 @@
     //添加头像模块
     _avatarModule = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCardModule];
     [_avatarModule activate:_xmppStream];
+    
+    //添加花名册模块
+    _rosterStroage = [[XMPPRosterCoreDataStorage alloc] init];
+    _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStroage];
+    [_roster activate:_xmppStream];
     //2.设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
@@ -288,5 +284,7 @@
     _vCardModule = nil;
     _vCardStorage = nil;
     _avatarModule = nil;
+    _roster = nil;
+    _rosterStroage = nil;
 }
 @end

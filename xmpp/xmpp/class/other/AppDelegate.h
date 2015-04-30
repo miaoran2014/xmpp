@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XMPPFramework.h"
 
 //定义登录结果的枚举
 typedef enum {
@@ -27,6 +27,8 @@ typedef void (^XMPPResultBlock)(XMPPResultType resultType);
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong,readonly) XMPPvCardTempModule *vCardModule; //电子名片模块
+@property (nonatomic, strong,readonly) XMPPStream *xmppStream;
 @property (nonatomic, assign,getter = isUserRegister) BOOL userRegister;//用户登录和注册的标识 YES:注册 NO:登录
 
 //连接到服务器 用户登录

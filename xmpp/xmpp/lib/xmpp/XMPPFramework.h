@@ -49,8 +49,8 @@
 //#import "XMPPRoomCoreDataStorage.h"
 //#import "XMPPRoomHybridStorage.h"
 //
-//#import "XMPPvCardTempModule.h"
-//#import "XMPPvCardCoreDataStorage.h"
+#import "XMPPvCardTempModule.h"
+#import "XMPPvCardCoreDataStorage.h"
 //
 //#import "XMPPPubSub.h"
 //

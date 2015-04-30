@@ -1,67 +1,61 @@
-//
-//  HMMyVCardViewController.m
-//  企信通
-//
-//  Created by apple on 14-8-30.
-//  Copyright (c) 2014年 heima. All rights reserved.
-//
+
 
 #import "MRMyVCardController.h"
 #import "AppDelegate.h"
+#import "XMPPvCardTemp.h"
+#define delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
 @interface MRMyVCardController ()
+@property (weak, nonatomic) IBOutlet UIImageView *headView;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;//昵称
+@property (weak, nonatomic) IBOutlet UILabel *jidLabel;//jid
+@property (weak, nonatomic) IBOutlet UILabel *orgNameLabel;//公司名
+@property (weak, nonatomic) IBOutlet UILabel *orgUnitsLabel;//部门
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;//职位
+@property (weak, nonatomic) IBOutlet UILabel *telLabel;//电话
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;//邮箱
 - (IBAction)logout:(id)sender;
 
 @end
 
 @implementation MRMyVCardController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadVCard];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//从数据库获取登录用户电子名片数据
+-(void)loadVCard{
+    XMPPvCardTemp *myCard = delegate.vCardModule.myvCardTemp;
+    //显示图片
+    if (myCard.photo) {
+        self.headView.image = [UIImage imageWithData:myCard.photo];
+    }
+    //昵称
+    self.nickNameLabel.text = myCard.nickname;
+    //jid
+    //myCard.jid是空，因为返回的xml数据没有JABBERID标签
+    self.jidLabel.text = delegate.xmppStream.myJID.bare;
+    //设置公司
+    self.orgNameLabel.text = myCard.orgName;
+    //设置部门
+    //一个人可能属于多个部门，所以orgUnits是一个数组
+    if (myCard.orgUnits.count > 0) {
+        self.orgUnitsLabel.text = myCard.orgUnits[0];
+    }
+    //设置职位
+    self.titleLabel.text = myCard.title;
+    //设置电话
+    //因为myCard.telecomsAddresses这个get方法，没有实现xml的数据解析，所以用note字段充当电话
+    self.telLabel.text = myCard.note;
+    //设置邮箱
+    //因为myCard.emailAddresses这个get方法，没有实现xml的数据解析，所以用mailer字段充当邮箱
+    self.emailLabel.text = myCard.mailer;
+ 
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-
 //注销
 - (IBAction)logout:(id)sender {
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate xmppLogout];
+    [delegate xmppLogout];
 }
 @end

@@ -6,14 +6,15 @@
 //  Copyright (c) 2015年 admin. All rights reserved.
 //
 #import "AppDelegate.h"
-#import "XMPPFramework.h"
 #import "MRLoginTool.h"
 #import "MRCommon.h"
 
 @interface AppDelegate ()<XMPPStreamDelegate>{
-    XMPPStream *_xmppStream;
     XMPPResultBlock _resultBlock;//登录和注册结果block
     XMPPReconnect *_reconnect;//自动连接模块
+//    XMPPvCardTempModule *_vCardModule;//电子名片模块
+    XMPPvCardCoreDataStorage *_vCardStorage;//存储电子名片数据
+    XMPPvCardAvatarModule *_avatarModule;//头像模块
 }
 
 @end
@@ -45,6 +46,17 @@
     _reconnect = [[XMPPReconnect alloc] init];
     //激活
     [_reconnect activate:_xmppStream];
+    
+    //创建电子名片数据存储
+    _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    //添加电子名片模块
+    _vCardModule = [[XMPPvCardTempModule alloc] initWithvCardStorage:_vCardStorage];
+    //激活
+    [_vCardModule activate:_xmppStream];
+    
+    //添加头像模块
+    _avatarModule = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCardModule];
+    [_avatarModule activate:_xmppStream];
     //2.设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
@@ -275,5 +287,8 @@
     //清空资源
     _xmppStream = nil;
     _reconnect = nil;
+    _vCardModule = nil;
+    _vCardStorage = nil;
+    _avatarModule = nil;
 }
 @end

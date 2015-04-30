@@ -113,13 +113,11 @@
     //连接成功之后，发送密码
     NSString *pwd = [MRLoginTool pwd];
     NSError *error = nil;
-    
     if(self.isUserRegister){
         [_xmppStream registerWithPassword:pwd error:&error];
     }else{
        [_xmppStream authenticateWithPassword:pwd error:&error];
     }
-    
     if (error) {
           HMLogInfo(@"%@",error);
     }

@@ -3,9 +3,9 @@
 #import "MRMyVCardController.h"
 #import "AppDelegate.h"
 #import "XMPPvCardTemp.h"
-#define delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define Delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface MRMyVCardController ()
+@interface MRMyVCardController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headView;
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;//昵称
 @property (weak, nonatomic) IBOutlet UILabel *jidLabel;//jid
@@ -27,7 +27,7 @@
 }
 //从数据库获取登录用户电子名片数据
 -(void)loadVCard{
-    XMPPvCardTemp *myCard = delegate.vCardModule.myvCardTemp;
+    XMPPvCardTemp *myCard = Delegate.vCardModule.myvCardTemp;
     //显示图片
     if (myCard.photo) {
         self.headView.image = [UIImage imageWithData:myCard.photo];
@@ -36,7 +36,7 @@
     self.nickNameLabel.text = myCard.nickname;
     //jid
     //myCard.jid是空，因为返回的xml数据没有JABBERID标签
-    self.jidLabel.text = delegate.xmppStream.myJID.bare;
+    self.jidLabel.text = Delegate.xmppStream.myJID.bare;
     //设置公司
     self.orgNameLabel.text = myCard.orgName;
     //设置部门
@@ -54,8 +54,57 @@
     self.emailLabel.text = myCard.mailer;
  
 }
+#pragma mark tableview的代理
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    int cellTag = (int)selectedCell.tag;
+    if (cellTag == 2 ) return; //如果tag为2，不做任何事件 直接返回
+    
+    if (cellTag == 0) {//图片选择
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照相" otherButtonTitles:@"相册", nil];
+        [sheet showInView:self.view];
+    }
+    
+}
+
+#pragma mark actionsheet的代理
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+    //如果是取消，直接返回
+    if (buttonIndex == 2) return;
+    
+    UIImagePickerController *imageContr = [[UIImagePickerController alloc] init];
+    
+    //允许图片可以编辑
+    imageContr.allowsEditing = YES;
+    
+    //设置代理
+    imageContr.delegate = self;
+    
+    if (buttonIndex == 0) {//照相
+        imageContr.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }else if (buttonIndex == 1){//相册
+        imageContr.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    //弹出控制器
+    [self presentViewController:imageContr animated:YES completion:nil];
+}
+
+
+#pragma mark 图片选择控制器的代理
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    //获取编辑后的图片
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    //设置imageView
+    self.headView.image = image;
+    
+    //如果实现了didFinishPickingMediaWithInfo 方法，图片片选择控制器的自己销毁
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 //注销
 - (IBAction)logout:(id)sender {
-    [delegate xmppLogout];
+    [Delegate xmppLogout];
 }
 @end

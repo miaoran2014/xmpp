@@ -4,7 +4,7 @@
 #import <MapKit/MapKit.h>
 #define Delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface MRRosterController (){
+@interface MRRosterController ()<NSFetchedResultsControllerDelegate>{
     NSFetchedResultsController *_resultContr;//数据的结果控制器
 }
 
@@ -18,8 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-   
     [self loadFriends2];
    
 }
@@ -43,7 +41,7 @@
     
     //b.sectionNum是好友的在线状态的标识
     _resultContr = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"sectionNum" cacheName:nil];
-    
+    _resultContr.delegate=self;
     //执行查询
     NSError *error = nil;
     [_resultContr performFetch:&error];
@@ -91,7 +89,6 @@
     id<NSFetchedResultsSectionInfo> groupInfo = _resultContr.sections[section];
     
     NSInteger state = [[groupInfo indexTitle] integerValue];
-    
     switch (state) {
         case 0:
             return @"在线";
@@ -124,5 +121,10 @@
     return cell;
     
 }
-
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+    [self.tableView reloadData];
+}
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
+     [self.tableView reloadData];
+}
 @end

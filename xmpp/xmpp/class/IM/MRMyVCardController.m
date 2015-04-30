@@ -67,6 +67,7 @@
         [sheet showInView:self.view];
     }else{
         //跳转,,讲cell传递过去
+        
         [self performSegueWithIdentifier:@"editVCardSegue" sender:selectedCell];
     }
 }
@@ -98,6 +99,7 @@
     UIImage *image = info[UIImagePickerControllerEditedImage];
     //设置imageView
     self.headView.image = image;
+    [self editVCardViewControllerDidFinishChange];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //注销
@@ -109,6 +111,7 @@
     id con=segue.destinationViewController;
     if([con isKindOfClass:[MREditVCardController class]]){
         MREditVCardController* edit=(MREditVCardController*)con;
+        edit.delegate=self;
         UITableViewCell* cell=sender;
         for (UIView* view in cell.contentView.subviews) {
             if([view isKindOfClass:[UILabel class]]){
@@ -123,6 +126,20 @@
     }
 }
 -(void)editVCardViewControllerDidFinishChange{
-    NSLog(@"come here");
+    
+    //更新服务器
+    //1获取电子名片
+    XMPPvCardTemp *myCard = Delegate.vCardModule.myvCardTemp;
+    myCard.photo = UIImagePNGRepresentation(self.headView.image);
+    myCard.nickname = self.nickNameLabel.text;
+    myCard.orgName = self.orgNameLabel.text;
+    //部门有数据时，才需要更新值
+    if (self.orgUnitsLabel.text.length != 0) {
+        myCard.orgUnits = @[self.orgUnitsLabel.text];
+    }
+    myCard.title = self.titleLabel.text;
+    myCard.note = self.telLabel.text;
+    myCard.mailer = self.emailLabel.text;
+    [Delegate.vCardModule updateMyvCardTemp:myCard];
 }
 @end

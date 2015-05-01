@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		840000341AF08C5600864B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840000331AF08C5600864B0A /* Main.storyboard */; };
 		840000371AF08D8600864B0A /* MRHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840000361AF08D8600864B0A /* MRHistoryController.m */; };
+		8425F7331AF27F2700AE958F /* MRAddRosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425F7321AF27F2700AE958F /* MRAddRosterController.m */; };
+		84395F301AF32BFA00086211 /* MRChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84395F2F1AF32BFA00086211 /* MRChatController.m */; };
 		843AABBF1AF2044C00772B2C /* MRRosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AABBE1AF2044C00772B2C /* MRRosterController.m */; };
 		8469C5F81AF063410034A765 /* MRLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5F71AF063410034A765 /* MRLoginTool.m */; };
 		8469C5FB1AF074340034A765 /* MRLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469C5FA1AF074340034A765 /* MRLoginView.m */; };
@@ -190,6 +192,10 @@
 		840000331AF08C5600864B0A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		840000351AF08D8600864B0A /* MRHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRHistoryController.h; sourceTree = "<group>"; };
 		840000361AF08D8600864B0A /* MRHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRHistoryController.m; sourceTree = "<group>"; };
+		8425F7311AF27F2700AE958F /* MRAddRosterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAddRosterController.h; sourceTree = "<group>"; };
+		8425F7321AF27F2700AE958F /* MRAddRosterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAddRosterController.m; sourceTree = "<group>"; };
+		84395F2E1AF32BFA00086211 /* MRChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRChatController.h; sourceTree = "<group>"; };
+		84395F2F1AF32BFA00086211 /* MRChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRChatController.m; sourceTree = "<group>"; };
 		843AABBD1AF2044C00772B2C /* MRRosterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRRosterController.h; sourceTree = "<group>"; };
 		843AABBE1AF2044C00772B2C /* MRRosterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRRosterController.m; sourceTree = "<group>"; };
 		8469C5F61AF063410034A765 /* MRLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRLoginTool.h; sourceTree = "<group>"; };
@@ -554,6 +560,10 @@
 		843AABBC1AF2042900772B2C /* friend */ = {
 			isa = PBXGroup;
 			children = (
+				84395F2E1AF32BFA00086211 /* MRChatController.h */,
+				84395F2F1AF32BFA00086211 /* MRChatController.m */,
+				8425F7311AF27F2700AE958F /* MRAddRosterController.h */,
+				8425F7321AF27F2700AE958F /* MRAddRosterController.m */,
 				843AABBD1AF2044C00772B2C /* MRRosterController.h */,
 				843AABBE1AF2044C00772B2C /* MRRosterController.m */,
 			);
@@ -1705,6 +1715,7 @@
 				847C73821AEF8759003E5D6D /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				847C737A1AEF8759003E5D6D /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				847C73791AEF8759003E5D6D /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				84395F301AF32BFA00086211 /* MRChatController.m in Sources */,
 				847C73771AEF8759003E5D6D /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				847C73A91AEF8759003E5D6D /* XMPPMessage+XEP_0184.m in Sources */,
 				847C736B1AEF8759003E5D6D /* XMPPRoster.m in Sources */,
@@ -1759,6 +1770,7 @@
 				847C737B1AEF8759003E5D6D /* XMPPRoomMemoryStorage.m in Sources */,
 				847C73941AEF8759003E5D6D /* XMPPMessage+XEP_0066.m in Sources */,
 				847C73C11AEF8759003E5D6D /* XMPPSRVResolver.m in Sources */,
+				8425F7331AF27F2700AE958F /* MRAddRosterController.m in Sources */,
 				8469C5FB1AF074340034A765 /* MRLoginView.m in Sources */,
 				847C73D11AEF8759003E5D6D /* DDXMLNode.m in Sources */,
 				847C739C1AEF8759003E5D6D /* XMPPCapabilities.xcdatamodel in Sources */,

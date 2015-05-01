@@ -2,6 +2,7 @@
 #import "MRRosterController.h"
 #import "AppDelegate.h"
 #import <MapKit/MapKit.h>
+#import "MRChatController.h"
 #define Delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
 @interface MRRosterController ()<NSFetchedResultsControllerDelegate>{
@@ -27,10 +28,8 @@
     //XMPPUserCoreDataStorageObject
     //1.获取XMPPRoster.sqlite上下文
     NSManagedObjectContext *context = Delegate.rosterStroage.mainThreadManagedObjectContext;
-    
     //2.添加请求
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
-    
     //3.设置排序 根据displayName的升序排序
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
     request.sortDescriptors = @[sort];
@@ -45,7 +44,6 @@
     //执行查询
     NSError *error = nil;
     [_resultContr performFetch:&error];
-
 }
 
 //获取好友列表的第一种方法
@@ -99,7 +97,6 @@
         case 2:
             return @"离线";
             break;
- 
         default:
             return @"未知状态";
             break;
@@ -117,7 +114,6 @@
    // 直接把indexPath传进去，就可以获取到对应组和行的数据
     XMPPUserCoreDataStorageObject *friend = [_resultContr objectAtIndexPath:indexPath];
     cell.textLabel.text = friend.displayName;
-    
     return cell;
     
 }
@@ -136,4 +132,17 @@
         [Delegate.roster removeUser:friend.jid];
     }
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+   NSIndexPath* index= [self.tableView indexPathForSelectedRow];
+    //获取好友
+   XMPPUserCoreDataStorageObject *friend = [_resultContr objectAtIndexPath:index];
+    //获取好友的jid
+    id destVc = segue.destinationViewController;
+    if ([destVc isKindOfClass:[MRChatController class] ]) {
+        MRChatController *chatVc = destVc;
+        chatVc.friendJid = friend.jid;
+    }
+}
+
 @end

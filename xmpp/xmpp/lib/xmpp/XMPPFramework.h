@@ -9,6 +9,9 @@
 #import "XMPPvCardTempModule.h"
 #import "XMPPvCardCoreDataStorage.h"
 
+//消息模块
+#import "XMPPMessageArchiving.h"
+#import "XMPPMessageArchivingCoreDataStorage.h"
 
 //#import "XMPPBandwidthMonitor.h"
 // 

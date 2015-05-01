@@ -53,6 +53,10 @@
     _rosterStroage = [[XMPPRosterCoreDataStorage alloc] init];
     _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStroage];
     [_roster activate:_xmppStream];
+    //=====添加消息模块
+    _msgStorage = [[XMPPMessageArchivingCoreDataStorage alloc] init];
+    _msgArching = [[XMPPMessageArchiving alloc] initWithMessageArchivingStorage:_msgStorage];
+    [_msgArching activate:_xmppStream];
     //2.设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
@@ -286,5 +290,7 @@
     _avatarModule = nil;
     _roster = nil;
     _rosterStroage = nil;
+    _msgArching = nil;
+    _msgStorage = nil;
 }
 @end

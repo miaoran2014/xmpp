@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-667" y="752"/>
         </scene>
-        <!--Root View Controller-->
+        <!--历史-->
         <scene sceneID="248-20-tMy">
             <objects>
                 <tableViewController id="bMX-lm-0j6" customClass="MRHistoryController" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                             <outlet property="delegate" destination="bMX-lm-0j6" id="GiB-Y6-EAJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bJ7-c1-y53">
+                    <navigationItem key="navigationItem" title="历史" id="bJ7-c1-y53">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="YR6-1f-xxy">
                             <view key="customView" contentMode="scaleToFill" id="1kp-eD-Z2H">
                                 <rect key="frame" x="16" y="5" width="71" height="33"/>
@@ -70,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="766" y="18"/>
         </scene>
-        <!--Root View Controller-->
+        <!--好友列表-->
         <scene sceneID="anp-yn-TgO">
             <objects>
                 <tableViewController id="acd-ly-pdI" customClass="MRRosterController" sceneMemberID="viewController">
@@ -79,13 +79,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="9xJ-GI-INf">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="9xJ-GI-INf">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9xJ-GI-INf" id="zzK-ct-xpw">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="40t-K7-FOM" kind="push" id="inr-4W-9IS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -93,11 +96,17 @@
                             <outlet property="delegate" destination="acd-ly-pdI" id="XAU-SR-cvb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Xgf-95-onc"/>
+                    <navigationItem key="navigationItem" title="好友列表" id="Xgf-95-onc">
+                        <barButtonItem key="rightBarButtonItem" title="添加" id="HCk-Y2-GMJ">
+                            <connections>
+                                <segue destination="ca1-ee-CMY" kind="push" id="RL1-vJ-MpC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CV6-R5-JTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="716"/>
+            <point key="canvasLocation" x="673" y="678"/>
         </scene>
         <!--个人信息-->
         <scene sceneID="vuY-sM-7Jm">
@@ -393,6 +402,113 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JG2-gV-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1033" y="1456"/>
+        </scene>
+        <!--添加好友-->
+        <scene sceneID="pBf-95-MIT">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="ca1-ee-CMY" userLabel="添加好友" customClass="MRAddRosterController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xyu-10-imI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jcw-Nj-QMJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fev-Qz-bZU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入好友的用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8z-mB-oNz">
+                                <rect key="frame" x="41" y="83" width="224" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYh-fq-b25">
+                                <rect key="frame" x="116" y="146" width="60" height="30"/>
+                                <state key="normal" title="添加">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="add:" destination="ca1-ee-CMY" eventType="touchUpInside" id="v9b-VE-gpU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加好友" id="6C6-Of-Xna"/>
+                    <connections>
+                        <outlet property="textField" destination="b8z-mB-oNz" id="pLi-du-gYm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pBJ-3V-Cwh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="104"/>
+        </scene>
+        <!--聊天室-->
+        <scene sceneID="7ni-9W-OlL">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="40t-K7-FOM" userLabel="聊天室" customClass="MRChatController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BJH-Cn-t2H"/>
+                        <viewControllerLayoutGuide type="bottom" id="pxb-dX-WgG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NiF-gl-WjO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heC-Ci-fq0" userLabel="输入框窗器">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AHa-4X-R5B">
+                                        <rect key="frame" x="54" y="7" width="193" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="40t-K7-FOM" id="5UY-T7-Lcq"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="PHq-RS-VcN"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dDL-kB-Ytv" userLabel="聊天表格">
+                                <rect key="frame" x="0.0" y="65" width="320" height="363"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" id="Ihe-me-Zw7">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihe-me-Zw7" id="UAa-hP-MKT">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="40t-K7-FOM" id="AUE-hN-91l"/>
+                                    <outlet property="delegate" destination="40t-K7-FOM" id="X3k-pb-ZBf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="heC-Ci-fq0" secondAttribute="trailing" id="9Qp-03-0j7"/>
+                            <constraint firstAttribute="trailing" secondItem="dDL-kB-Ytv" secondAttribute="trailing" id="DUN-8L-DFl"/>
+                            <constraint firstItem="heC-Ci-fq0" firstAttribute="top" secondItem="dDL-kB-Ytv" secondAttribute="bottom" id="adH-Ua-5ey"/>
+                            <constraint firstItem="dDL-kB-Ytv" firstAttribute="leading" secondItem="NiF-gl-WjO" secondAttribute="leading" id="ej4-79-HMh"/>
+                            <constraint firstItem="heC-Ci-fq0" firstAttribute="leading" secondItem="NiF-gl-WjO" secondAttribute="leading" id="kEI-B1-9Lb"/>
+                            <constraint firstAttribute="bottom" secondItem="heC-Ci-fq0" secondAttribute="bottom" id="rlb-RU-c3Q"/>
+                            <constraint firstItem="dDL-kB-Ytv" firstAttribute="top" secondItem="BJH-Cn-t2H" secondAttribute="bottom" id="uFT-DZ-dY5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="聊天室" id="yVQ-He-Eid"/>
+                    <connections>
+                        <outlet property="inputConstraint" destination="rlb-RU-c3Q" id="18W-Pl-awZ"/>
+                        <outlet property="tableView" destination="dDL-kB-Ytv" id="ZhT-IV-2uV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f04-Xu-e8d" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1201" y="716"/>
         </scene>
     </scenes>
     <resources>

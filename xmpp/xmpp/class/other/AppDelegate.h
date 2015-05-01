@@ -32,7 +32,8 @@ typedef void (^XMPPResultBlock)(XMPPResultType resultType);
 
 @property (nonatomic, strong,readonly)XMPPRoster *roster;//花名册模块
 @property (nonatomic, strong,readonly)XMPPRosterCoreDataStorage *rosterStroage;//花名册数据存储
-
+@property (nonatomic, strong,readonly)XMPPMessageArchiving *msgArching;//消息模块
+@property (nonatomic, strong,readonly)XMPPMessageArchivingCoreDataStorage *msgStorage;//消息数据存储
 @property (nonatomic, assign,getter = isUserRegister) BOOL userRegister;//用户登录和注册的标识 YES:注册 NO:登录
 
 //连接到服务器 用户登录

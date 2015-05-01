@@ -1,9 +1,12 @@
 
 #import "MRChatController.h"
 #import "AppDelegate.h"
+#import "MRLoginTool.h"
+#import "NSDate+CZ.h"
 #define Delegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define kBaseURL @"http://localhost:8080/imfileserver/Upload/Image/"
 
-@interface MRChatController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,NSFetchedResultsControllerDelegate>{
+@interface MRChatController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,NSFetchedResultsControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
     NSFetchedResultsController *_resultControler;
 }
 
@@ -99,7 +102,7 @@
     
     //添加消息内容
     [msg addBody:text];
-    
+    NSLog(@"%@",msg);
     //发送消息
     [Delegate.xmppStream sendElement:msg];
     
@@ -108,5 +111,32 @@
     textField.text = nil;
     return YES;
 }
+- (IBAction)selectedImage {
+    
+    //从相册里获取相片
+    UIImagePickerController *imageControl = [[UIImagePickerController alloc] init];
+    imageControl.delegate = self;
+    
+    imageControl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:imageControl animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    //1.获取图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    //2定义文件(图片)上传到服务器保存的名称 user + time
+    NSString *user = [MRLoginTool user];
+    //20140905151530
+    NSString *time = [NSDate nowDateFormat:CZDateFormatyyyyMMddHHmmss];
+    NSString *imageName = [user stringByAppendingString:time];
+    //3.往文件服务上传图片
+    //3.1获取上传的地址
+    //http://localhost:8080/imfileserver/Upload/Image/ + imageName
+    NSString *imageUploadUrl = [kBaseURL stringByAppendingString:imageName];
+    NSLog(@"%@",imageUploadUrl);
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
 
